@@ -18,4 +18,6 @@ Read more at https://makecode.microbit.org/extensions
 
 * for PXT/microbit
 (The metadata above is needed for package search.)
-
+```package
+pxt-dxktest=github:chbpku/pxt-dxktest
+```

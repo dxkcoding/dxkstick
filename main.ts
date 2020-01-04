@@ -1,9 +1,4 @@
-basic.showLeds(`
-    . . . . .
-    . # . # .
-    . . . . .
-    # . . . #
-    . # # # .
-    `);
-pins.i2cReadNumber(0, NumberFormat.Int8LE)
-pins.i2cWriteNumber(0, 0, NumberFormat.Int8LE)
+//% weight=0 color=#94070A icon="" block="dxktest"
+namespace dxktest {
+    //% blockId="humidity" block="get humidity"
+} 

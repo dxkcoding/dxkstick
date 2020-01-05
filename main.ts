@@ -25,7 +25,7 @@ function execCmdReturn(slot: Slot, cmd: string): number {
 }
 //% weight=0 color=#94070A icon="\uf0ac" block="dxktest"
 namespace dxktest {
-    //% blockId="humidity" block="2Get Humidity from %slot"
+    //% blockId="humidity" block="Get Humidity from %slot"
     export function getHumidity(slot: Slot): number {
         return execCmdReturn(slot, "get_humi");
     }

@@ -1,5 +1,5 @@
 {
-    "dxktest|block"= "dxktest测试项目",
-    "dxktest.humidity|block" = "湿度值 来自插槽 %slot",
-    "dxktest.temperature|block" = "温度值 来自插槽 %slot"
+    "dxktest|block" : "dxktest测试项目",
+    "dxktest.humidity|block" : "湿度值 来自插槽 %slot",
+    "dxktest.temperature|block" : "温度值 来自插槽 %slot"
 }

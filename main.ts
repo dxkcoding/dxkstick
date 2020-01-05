@@ -1,7 +1,7 @@
 enum Slot {
-    //% block="Slot A"
+    //% block="Slot_A"
     SlotA = 0x16,
-    //% block="Slot B"
+    //% block="Slot_B"
     SlotB = 0x17
 }
 

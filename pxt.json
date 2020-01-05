@@ -1,6 +1,6 @@
 {
     "name": "pxt-dxktest",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "test project for dxkStick",
     "dependencies": {
         "core": "*",

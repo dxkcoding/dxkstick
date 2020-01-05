@@ -1,6 +1,6 @@
 {
     "name": "pxt-dxktest",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "test project for dxkStick",
     "license": "MIT",
     "dependencies": {

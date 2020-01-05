@@ -1,5 +1,11 @@
 {
-    "dxktest|block": "dxktest测试项目",
-    "dxktest.getHumidity|block": "湿度值 来自插槽 %slot",
-    "dxktest.getTemp|block": "温度值 来自插槽 %slot"
+    "Slot.SlotA|block": "插槽A",
+    "Slot.SlotB|block": "插槽B",
+    "dxktest|block": "dxkStick的测试项目",
+    "dxktest.getHumidity|block": "湿度值 来自 %slot",
+    "dxktest.getTemp|block": "温度值 来自 %slot",
+    "dxktest.ledON|block": "红灯亮 %slot",
+    "dxktest.ledOFF|block": "红灯灭 %slot",
+    "dxktest.oledClearScreen": "清空OLED屏幕 %slot",
+    "dxktest.oledShowMsg": "在OLED屏幕显示信息 %msg| %slot"
 }

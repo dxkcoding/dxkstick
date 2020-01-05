@@ -21,7 +21,7 @@ function execCmd(slot: Slot, cmd: string): number {
 }
 //% weight=0 color=#94070A icon="\uf0ac" block="dxktest"
 namespace dxktest {
-    //% blockId="humidity" block="MyGet Humidity from slot %slot"
+    //% blockId="humidity" block="Get Humidity from slot %slot"
     export function getHumidity(slot: Slot): number {
         //let cmd = pins.createBufferFromArray(Array "get_humi")
         return execCmd(slot, "get_humi");

@@ -1,18 +1,19 @@
 {
     "name": "pxt-dxktest",
-    "version": "0.0.0",
-    "description": "",
+    "version": "0.0.1",
+    "description": "test project for dxkStick",
     "dependencies": {
         "core": "*",
         "radio": "*"
     },
     "files": [
         "README.md",
-        "main.ts"
+        "main.ts",
+        "_locales/zh/dxktest-strings.json"
     ],
     "testFiles": [
         "test.ts"
     ],
-    "public": false,
+    "public": true,
     "preferredEditor": "tsprj"
 }

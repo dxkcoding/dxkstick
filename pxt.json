@@ -1,6 +1,6 @@
 {
-    "name": "pxt-dxktest",
-    "version": "0.0.14",
+    "name": "dxktest",
+    "version": "0.0.18",
     "description": "test project for dxkStick",
     "license": "MIT",
     "dependencies": {
@@ -16,6 +16,5 @@
         "test.ts"
     ],
     "public": true,
-    "preferredEditor": "tsprj",
-    "installedVersion": "workspace:c209db7b-5da6-4967-52ff-c16ccc2bea7c"
+    "preferredEditor": "tsprj"
 }

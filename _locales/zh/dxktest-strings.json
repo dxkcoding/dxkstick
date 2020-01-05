@@ -7,5 +7,5 @@
     "dxktest.ledON|block": "%slot 红灯亮",
     "dxktest.ledOFF|block": "%slot 红灯灭",
     "dxktest.oledClearScreen|block": "清空 %slot OLED屏幕",
-    "dxktest.oledShowMsg|block": "在 %slot| OLED屏幕显示信息 %msg"
+    "dxktest.oledShowMsg|block": "在 %slot| OLED屏幕显示信息 %msg（仅支持英文）"
 }

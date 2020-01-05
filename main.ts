@@ -33,21 +33,21 @@ namespace dxktest {
     export function getTemp(slot: Slot): number {
         return execCmdReturn(slot, "get_temp");
     }
-    //% blockId="led_on" block="LED ON for %slot"
+    //% blockId="led_on" block="LED in %slot ON"
     export function ledON(slot: Slot): void {
         execCmd(slot, "set_led_on");
     }
-    //% blockId="led_off" block="LED OFF for %slot"
+    //% blockId="led_off" block="LED in %slot OFF"
     export function ledOFF(slot: Slot): void {
         execCmd(slot, "set_led_off");
     }
-    //% blockId="oled_clear" block="OLED clear for %slot"
+    //% blockId="oled_clear" block="OLED in %slot clear screen"
     export function oledClearScreen(slot: Slot): void {
         execCmd(slot, "ClearScreen");
         basic.pause(10);
     }
-    //% blockId="oled_show" block="OLED show message %msg| for %slot"
-    export function oledShowMsg(msg: string, slot: Slot) {
+    //% blockId="oled_show" block="OLED in %slot |show message %msg"
+    export function oledShowMsg(slot: Slot, msg: string) {
         execCmd(slot, "DisplayGB2312,0,0,"+msg.substr(0,16));
         basic.pause(15); 
     }

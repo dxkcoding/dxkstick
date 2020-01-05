@@ -2,6 +2,7 @@
     "name": "pxt-dxktest",
     "version": "0.0.5",
     "description": "test project for dxkStick",
+    "license": "MIT",
     "dependencies": {
         "core": "*",
         "radio": "*"

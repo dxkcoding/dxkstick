@@ -5,9 +5,9 @@ enum Slot {
     SlotB = 0x17
 }
 
-function bufferFromString(s: string):Buffer {
+function bufferFromString(s: string): Buffer {
     let buf = pins.createBuffer(s.length);
-    for (let i = 0; i< s.length; i++) {
+    for (let i = 0; i < s.length; i++) {
         buf.setNumber(NumberFormat.Int8LE, i, s.charCodeAt(i));
     }
     return buf;

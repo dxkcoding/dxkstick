@@ -26,4 +26,8 @@ namespace dxktest {
         //let cmd = pins.createBufferFromArray(Array "get_humi")
         return execCmd(slot, "get_humi");
     }
+    //% blockId="temperature" block="Get Temperature from slot %slot"
+    export function getTemp(slot: Slot): number {
+        return execCmd(slot, "get_temp");
+    }
 } 

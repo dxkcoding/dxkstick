@@ -19,7 +19,7 @@ function execCmd(slot: Slot, cmd: string): number {
     basic.pause(50);
     return val;
 }
-//% weight=0 color=#94070A icon="\uf0ac" block="dxktest测试"
+//% weight=0 color=#94070A icon="\uf0ac" block="dxktest"
 namespace dxktest {
     //% blockId="humidity" block="Get Humidity from slot %slot"
     export function getHumidity(slot: Slot): number {

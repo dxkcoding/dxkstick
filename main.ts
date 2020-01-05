@@ -12,8 +12,12 @@ function bufferFromString(s: string): Buffer {
     }
     return buf;
 }
-
-function execCmd(slot: Slot, cmd: string): number {
+function execCmd(slot: Slot, cmd: string): void {
+    pins.i2cWriteBuffer(slot, bufferFromString(cmd), false);
+    basic.pause(20);
+    return;
+}
+function execCmdReturn(slot: Slot, cmd: string): number {
     pins.i2cWriteBuffer(slot, bufferFromString(cmd), false);
     let val = pins.i2cReadNumber(slot, NumberFormat.Int8LE);
     basic.pause(50);
@@ -21,13 +25,20 @@ function execCmd(slot: Slot, cmd: string): number {
 }
 //% weight=0 color=#94070A icon="\uf0ac" block="dxktest"
 namespace dxktest {
-    //% blockId="humidity" block="1Get Humidity from slot %slot"
+    //% blockId="humidity" block="Get Humidity from slot %slot"
     export function getHumidity(slot: Slot): number {
-        //let cmd = pins.createBufferFromArray(Array "get_humi")
-        return execCmd(slot, "get_humi");
+        return execCmdReturn(slot, "get_humi");
     }
     //% blockId="temperature" block="Get Temperature from slot %slot"
     export function getTemp(slot: Slot): number {
-        return execCmd(slot, "get_temp");
+        return execCmdReturn(slot, "get_temp");
+    }
+    //% blockId="led_on" block="LED ON for slot %slot"
+    export function ledON(slot: Slot): void {
+        execCmd(slot, "set_led_on")
+    }
+    //% blockId="led_off" block="LED OFF for slot %slot"
+    export function ledOFF(slot: Slot): void {
+        execCmd(slot, "set_led_off")
     }
 } 

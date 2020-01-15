@@ -39,33 +39,33 @@ function execCmd(slot: Slot, cmd: string): void {
 }
 function execCmdReturn(slot: Slot, cmd: string): number {
     pins.i2cWriteBuffer(slot, bufferFromString(cmd), false);
-    let val = pins.i2cReadNumber(slot, NumberFormat.Int8LE);
+    let val = pins.i2cReadNumber(slot, NumberFormat.Int8BE);
     //basic.pause(50);
     return val;
 }
 function execCmdReturn16(slot: Slot, cmd: string): number {
     pins.i2cWriteBuffer(slot, bufferFromString(cmd), false);
-    let val = pins.i2cReadNumber(slot, NumberFormat.Int16LE);
+    let val = pins.i2cReadNumber(slot, NumberFormat.Int16BE);
     //basic.pause(50);
     return val;
 }
 function execCmdReturnBool(slot: Slot, cmd: string): boolean {
     pins.i2cWriteBuffer(slot, bufferFromString(cmd), false);
     let val = true;
-    if (pins.i2cReadNumber(slot, NumberFormat.Int8LE) == 0) {
+    if (pins.i2cReadNumber(slot, NumberFormat.Int8BE) == 0) {
         val = false;
     }
     return val;
 }
 function execCmdHandle(slot: Slot, ChosenByte: number): number {
     pins.i2cWriteBuffer(slot, bufferFromString("get_key_val"), false);
-    let buf=pins.i2cReadBuffer(slot,9);
-    let val=0;
-    if(ChosenByte<=5){
-        val = buf.getNumber(NumberFormat.Int8LE, ChosenByte - 1);
+    let buf = pins.i2cReadBuffer(slot, 9);
+    let val = 0;
+    if (ChosenByte <= 5) {
+        val = buf.getNumber(NumberFormat.Int8BE, ChosenByte - 1);
     }
-    else{
-        val = buf.getNumber(NumberFormat.Int16LE, ChosenByte - 1);
+    else {
+        val = buf.getNumber(NumberFormat.Int16BE, ChosenByte - 1);
     }
     //basic.pause(50);
     return val;
@@ -95,10 +95,10 @@ namespace dxktest {
     }
     //% blockId="Handle_Button_State" block="Get Handle %handle_button State from %slot"
     export function getHandleButton(slot: Slot, handle_button: HandleButton): boolean {
-        if (execCmdHandle(slot, handle_button) == 0){
+        if (execCmdHandle(slot, handle_button) == 0) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }

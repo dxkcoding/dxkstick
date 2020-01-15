@@ -1,6 +1,8 @@
 {
     "Slot.SlotA|block": "插槽A",
     "Slot.SlotB|block": "插槽B",
+    "TempHumi.Temperature|block": "温度",
+    "TempHumi.Humidity|block": "湿度",
     "HandleButton.HandlPress|block": "手柄",
     "HandleButton.UpBottun|block": "UP 键",
     "HandleButton.DownBottun|block": "DOWN 键",
@@ -9,8 +11,7 @@
     "HandleAxis.HandleX|block": "手柄X轴",
     "HandleAxis.HandleY|block": "手柄Y轴",
     "dxktest|block": "DXK模块",
-    "dxktest.getHumidity|block": "%slot 湿度值",
-    "dxktest.getTemp|block": "%slot 温度值",
+    "dxktest.getTempHumi|block": "%slot %temp_humi",
     "dxktest.getPoten|block": "%slot 电位",
     "dxktest.getLight|block": "%slot 光亮度",
     "dxktest.getMicrophone|block": "%slot 声音响度",

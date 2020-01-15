@@ -5,6 +5,13 @@ enum Slot {
     SlotB = 0x17
 }
 
+enum TempHumi {
+    //% block="Temperature"
+    Temperature = 0x1,
+    //% block="Humidity"
+    Humidity = 0x2
+}
+
 enum HandleButton {
     //% block="Handle_Hand"
     HandlPress = 1,
@@ -73,13 +80,14 @@ function execCmdHandle(slot: Slot, ChosenByte: number): number {
 
 //% weight=0 color=#94070A icon="\uf0ac" block="dxktest"
 namespace dxktest {
-    //% blockId="humidity" block="Get Humidity from %slot"
-    export function getHumidity(slot: Slot): number {
-        return execCmdReturn(slot, "get_humi");
-    }
-    //% blockId="temperature" block="Get Temperature from %slot"
-    export function getTemp(slot: Slot): number {
-        return execCmdReturn(slot, "get_temp");
+    //% blockId="Temp_Humi" block="Get %temp_humi from %slot"
+    export function getTempHumi(slot: Slot, temp_humi: TempHumi): number {
+
+        switch (temp_humi) {
+            case 0x1: return execCmdReturn(slot, "get_temp");
+            case 0x2: return execCmdReturn(slot, "get_humi");
+            default: return 2;
+        }
     }
     //% blockId="potential_value" block="Get Potential Value from %slot"
     export function getPoten(slot: Slot): number {
@@ -129,7 +137,7 @@ namespace dxktest {
     }
     //% blockId="oled_show" block="OLED in %slot |show message %msg"
     export function oledShowMsg(slot: Slot, msg: string) {
-        execCmd(slot, "DisplayGB2312,0,0," + msg.substr(0, 16));
+        execCmd(slot, "DisplayGB2312,0,0," + msg.substr(0,16));
         basic.pause(15);
     }
 } 

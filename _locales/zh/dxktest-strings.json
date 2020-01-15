@@ -1,11 +1,24 @@
 {
     "Slot.SlotA|block": "插槽A",
     "Slot.SlotB|block": "插槽B",
-    "dxktest|block": "dxkStick的测试项目",
+    "HandleButton.HandlPress|block": "Gamepad 手柄",
+    "HandleButton.UpBottun|block": "Gamepad UP 键",
+    "HandleButton.DownBottun|block": "Gamepad DOWN 键",
+    "HandleButton.LeftBottun|block": "Gamepad LEFT 键",
+    "HandleButton.RightBottun|block": "Gamepad RIGHT 键",
+    "dxktest|block": "DXK模块",
     "dxktest.getHumidity|block": "%slot 湿度值",
     "dxktest.getTemp|block": "%slot 温度值",
+    "dxktest.getPoten|block": "%slot 电位",
+    "dxktest.getLight|block": "%slot 光亮度",
+    "dxktest.getMicrophone|block": "%slot 声音响度",
+    "dxktest.getHandleButton|block": "%slot %handle_button 按压状态",
+    "dxktest.getHandleX|block": "%slot 手柄X轴",
+    "dxktest.getHandleY|block": "%slot 手柄Y轴",
+    "dxktest.getDistance|block": "%slot 距离",
+    "dxktest.getTouchState|block": "%slot 触摸状态",
     "dxktest.ledON|block": "%slot 红灯亮",
     "dxktest.ledOFF|block": "%slot 红灯灭",
     "dxktest.oledClearScreen|block": "清空 %slot OLED屏幕",
-    "dxktest.oledShowMsg|block": "在 %slot| OLED屏幕显示信息 %msg（仅支持英文）"
+    "dxktest.oledShowMsg|block": "在 %slot| OLED屏幕显示信息 %msg"
 }

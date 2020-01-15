@@ -5,6 +5,19 @@ enum Slot {
     SlotB = 0x17
 }
 
+enum HandleButton {
+    //% block="Handle_Hand"
+    HandlPress = 1,
+    //% block="Handle_Up"
+    UpBottun = 2,
+    //% block="Handle_Down"
+    DownBottun = 3,
+    //% block="Handle_Left"
+    LeftBottun = 4,
+    //% block="Handle_Right"
+    RightBottun = 5
+}
+
 function bufferFromString(s: string): Buffer {
     let buf = pins.createBuffer(s.length);
     for (let i = 0; i < s.length; i++) {
@@ -23,6 +36,34 @@ function execCmdReturn(slot: Slot, cmd: string): number {
     //basic.pause(50);
     return val;
 }
+function execCmdReturn16(slot: Slot, cmd: string): number {
+    pins.i2cWriteBuffer(slot, bufferFromString(cmd), false);
+    let val = pins.i2cReadNumber(slot, NumberFormat.Int16LE);
+    //basic.pause(50);
+    return val;
+}
+function execCmdReturnBool(slot: Slot, cmd: string): boolean {
+    pins.i2cWriteBuffer(slot, bufferFromString(cmd), false);
+    let val = true;
+    if (pins.i2cReadNumber(slot, NumberFormat.Int8LE) == 0) {
+        val = false;
+    }
+    return val;
+}
+function execCmdHandle(slot: Slot, ChosenByte: number): number {
+    pins.i2cWriteBuffer(slot, bufferFromString("get_key_val"), false);
+    let buf=pins.i2cReadBuffer(slot,9);
+    let val=0;
+    if(ChosenByte<=5){
+        val = buf.getNumber(NumberFormat.Int8LE, ChosenByte - 1);
+    }
+    else{
+        val = buf.getNumber(NumberFormat.Int16LE, ChosenByte - 1);
+    }
+    //basic.pause(50);
+    return val;
+}
+
 //% weight=0 color=#94070A icon="\uf0ac" block="dxktest"
 namespace dxktest {
     //% blockId="humidity" block="Get Humidity from %slot"
@@ -32,6 +73,43 @@ namespace dxktest {
     //% blockId="temperature" block="Get Temperature from %slot"
     export function getTemp(slot: Slot): number {
         return execCmdReturn(slot, "get_temp");
+    }
+    //% blockId="potential_value" block="Get Potential Value from %slot"
+    export function getPoten(slot: Slot): number {
+        return execCmdReturn16(slot, "get_poten_val");
+    }
+    //% blockId="light_value" block="Get Light Value from %slot"
+    export function getLight(slot: Slot): number {
+        return execCmdReturn16(slot, "get_light_val");
+    }
+    //% blockId="Microphone_value" block="Get Microphone Value from %slot"
+    export function getMicrophone(slot: Slot): number {
+        return execCmdReturn16(slot, "get_mic_val");
+    }
+    //% blockId="Handle_Button_State" block="Get Handle %handle_button State from %slot"
+    export function getHandleButton(slot: Slot, handle_button: HandleButton): boolean {
+        if (execCmdHandle(slot, handle_button) == 0){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    //% blockId="Handle_X_State" block="Get Handle X from %slot"
+    export function getHandleX(slot: Slot): number {
+        return execCmdHandle(slot, 6);
+    }
+    //% blockId="Handle_Y_State" block="Get Handle Y from %slot"
+    export function getHandleY(slot: Slot): number {
+        return execCmdHandle(slot, 8);
+    }
+    //% blockId="Distance_value" block="Get Distance Value from %slot"
+    export function getDistance(slot: Slot): number {
+        return execCmdReturn16(slot, "get_distance_val");
+    }
+    //% blockId="Touch_State" block="Get Touch State from %slot"
+    export function getTouchState(slot: Slot): boolean {
+        return execCmdReturnBool(slot, "get_touch");
     }
     //% blockId="led_on" block="LED in %slot ON"
     export function ledON(slot: Slot): void {
@@ -48,7 +126,7 @@ namespace dxktest {
     }
     //% blockId="oled_show" block="OLED in %slot |show message %msg"
     export function oledShowMsg(slot: Slot, msg: string) {
-        execCmd(slot, "DisplayGB2312,0,0,"+msg.substr(0,16));
-        basic.pause(15); 
+        execCmd(slot, "DisplayGB2312,0,0," + msg.substr(0, 16));
+        basic.pause(15);
     }
 } 

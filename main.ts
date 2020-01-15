@@ -18,6 +18,13 @@ enum HandleButton {
     RightBottun = 5
 }
 
+enum HandleAxis {
+    //% block="Handle_X"
+    HandleX = 6,
+    //% block="Handle_Y"
+    HandleY = 8
+}
+
 function bufferFromString(s: string): Buffer {
     let buf = pins.createBuffer(s.length);
     for (let i = 0; i < s.length; i++) {
@@ -95,13 +102,9 @@ namespace dxktest {
             return false;
         }
     }
-    //% blockId="Handle_X_State" block="Get Handle X from %slot"
-    export function getHandleX(slot: Slot): number {
-        return execCmdHandle(slot, 6);
-    }
-    //% blockId="Handle_Y_State" block="Get Handle Y from %slot"
-    export function getHandleY(slot: Slot): number {
-        return execCmdHandle(slot, 8);
+    //% blockId="Handle_Axis" block="Get %handle_axis from %slot"
+    export function getHandleAxis(slot: Slot, handle_axis: HandleAxis): number {
+        return execCmdHandle(slot, handle_axis);
     }
     //% blockId="Distance_value" block="Get Distance Value from %slot"
     export function getDistance(slot: Slot): number {

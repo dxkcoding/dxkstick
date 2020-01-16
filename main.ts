@@ -78,7 +78,7 @@ function execCmdHandle(slot: Slot, ChosenByte: number): number {
     return val;
 }
 
-//% weight=0 color=#94070A icon="\uf0ac" block="dxktest"
+//% weight=0 color=#48bcb2 icon="\uf0ac" block="dxktest"
 namespace dxktest {
     //% blockId="Temp_Humi" block="Get %temp_humi from %slot"
     export function getTempHumi(slot: Slot, temp_humi: TempHumi): number {

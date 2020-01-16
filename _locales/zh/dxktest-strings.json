@@ -17,10 +17,10 @@
     "dxktest.getMicrophone|block": "获取 %slot 音量",
     "dxktest.getHandleButton|block": "获取 %slot %handle_button 按压状态",
     "dxktest.getHandleAxis|block": "获取 %slot %handle_axis",
-    "dxktest.getDistance|block": "获取 %slot 距离",
+    "dxktest.getDistance|block": "获取 %slot 距离（cm）",
     "dxktest.getTouchState|block": "获取 %slot 触摸状态",
     "dxktest.ledON|block": "%slot 红灯亮",
     "dxktest.ledOFF|block": "%slot 红灯灭",
     "dxktest.oledClearScreen|block": "清空 %slot OLED屏幕",
-    "dxktest.oledShowMsg|block": "在 %slot| OLED屏幕显示信息 %msg"
+    "dxktest.oledShowMsg|block": "在 %slot| OLED屏幕显示信息 %msg （仅英文）"
 }

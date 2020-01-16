@@ -118,6 +118,10 @@ namespace dxktest {
     export function getDistance(slot: Slot): number {
         return execCmdReturn16(slot, "get_distance_val");
     }
+    //% blockId="Pressure_value" block="Get Pressure Value from %slot"
+    export function getPressure(slot: Slot): number {
+        return execCmdReturn16(slot, "get_pressure");
+    }
     //% blockId="Touch_State" block="Get Touch State from %slot"
     export function getTouchState(slot: Slot): boolean {
         return execCmdReturnBool(slot, "get_touch");

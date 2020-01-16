@@ -137,7 +137,7 @@ namespace dxktest {
     }
     //% blockId="oled_show" block="OLED in %slot |show message %msg"
     export function oledShowMsg(slot: Slot, msg: string) {
-        execCmd(slot, "DisplayGB2312,0,0," + msg.substr(0,16));
+        execCmd(slot, "DisplayGB2312,0,0," + msg.substr(0, 16));
         basic.pause(15);
     }
 } 

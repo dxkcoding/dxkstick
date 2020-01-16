@@ -1,6 +1,6 @@
 {
     "name": "dxktest",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "description": "test project for dxkStick",
     "license": "MIT",
     "dependencies": {

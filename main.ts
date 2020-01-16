@@ -5,6 +5,13 @@ enum Slot {
     SlotB = 0x17
 }
 
+enum TempHumi {
+    //% block="Temperature"
+    Temperature = 0x1,
+    //% block="Humidity"
+    Humidity = 0x2
+}
+
 enum HandleButton {
     //% block="Handle_Hand"
     HandlPress = 1,
@@ -23,6 +30,15 @@ enum HandleAxis {
     HandleX = 6,
     //% block="Handle_Y"
     HandleY = 8
+}
+
+enum Neo_grps {
+    //% block="Ring_24"
+    Ring24 = 1,
+    //% block="Array_99"
+    Array99 = 2,
+    //% block="Belt_30"
+    Belt30 = 3
 }
 
 function bufferFromString(s: string): Buffer {
@@ -73,47 +89,15 @@ function execCmdHandle(slot: Slot, ChosenByte: number): number {
 
 //% weight=0 color=#94070A icon="\uf0ac" block="dxktest"
 namespace dxktest {
-    //% blockId="humidity" block="Get Humidity from %slot"
-    export function getHumidity(slot: Slot): number {
-        return execCmdReturn(slot, "get_humi");
-    }
-    //% blockId="temperature" block="Get Temperature from %slot"
-    export function getTemp(slot: Slot): number {
-        return execCmdReturn(slot, "get_temp");
-    }
-    //% blockId="potential_value" block="Get Potential Value from %slot"
-    export function getPoten(slot: Slot): number {
-        return execCmdReturn16(slot, "get_poten_val");
-    }
-    //% blockId="light_value" block="Get Light Value from %slot"
-    export function getLight(slot: Slot): number {
-        return execCmdReturn16(slot, "get_light_val");
-    }
-    //% blockId="Microphone_value" block="Get Microphone Value from %slot"
-    export function getMicrophone(slot: Slot): number {
-        return execCmdReturn16(slot, "get_mic_val");
-    }
-    //% blockId="Handle_Button_State" block="Get Handle %handle_button State from %slot"
-    export function getHandleButton(slot: Slot, handle_button: HandleButton): boolean {
-        if (execCmdHandle(slot, handle_button) == 0) {
-            return true;
-        }
-        else {
-            return false;
+    //% blockId="Temp_Humi" block="Get %temp_humi from %slot"
+    export function getTempHumi(slot: Slot, temp_humi: TempHumi): number {
+        switch (temp_humi) {
+            case 0x1: return execCmdReturn(slot, "get_temp");
+            case 0x2: return execCmdReturn(slot, "get_humi");
+            default: return 2;
         }
     }
-    //% blockId="Handle_Axis" block="Get %handle_axis from %slot"
-    export function getHandleAxis(slot: Slot, handle_axis: HandleAxis): number {
-        return execCmdHandle(slot, handle_axis);
-    }
-    //% blockId="Distance_value" block="Get Distance Value from %slot"
-    export function getDistance(slot: Slot): number {
-        return execCmdReturn16(slot, "get_distance_val");
-    }
-    //% blockId="Touch_State" block="Get Touch State from %slot"
-    export function getTouchState(slot: Slot): boolean {
-        return execCmdReturnBool(slot, "get_touch");
-    }
+
     //% blockId="led_on" block="LED in %slot ON"
     export function ledON(slot: Slot): void {
         execCmd(slot, "set_led_on");
@@ -122,10 +106,57 @@ namespace dxktest {
     export function ledOFF(slot: Slot): void {
         execCmd(slot, "set_led_off");
     }
+
+    //% blockId="potential_value" block="Get Potential Value from %slot"
+    export function getPoten(slot: Slot): number {
+        return execCmdReturn16(slot, "get_poten_val");
+    }
+
+    //% blockId="light_value" block="Get Light Value from %slot"
+    export function getLight(slot: Slot): number {
+        return execCmdReturn16(slot, "get_light_val");
+    }
+
+    //% blockId="Microphone_value" block="Get Microphone Value from %slot"
+    export function getMicrophone(slot: Slot): number {
+        return execCmdReturn16(slot, "get_mic_val");
+    }
+
+    //% blockId="Handle_Button_State" block="Get Handle %handle_button State from %slot"
+    export function getHandleButton(slot: Slot, handle_button: HandleButton): boolean {
+        if (execCmdHandle(slot, handle_button) == 0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    //% blockId="Handle_Axis" block="Get %handle_axis from %slot"
+    export function getHandleAxis(slot: Slot, handle_axis: HandleAxis): number {
+        return execCmdHandle(slot, handle_axis);
+    }
+
+    //% blockId="Distance_value" block="Get Distance Value from %slot"
+    export function getDistance(slot: Slot): number {
+        return execCmdReturn16(slot, "get_distance_val");
+    }
+
+    //% blockId="Touch_State" block="Get Touch State from %slot"
+    export function getTouchState(slot: Slot): boolean {
+        return execCmdReturnBool(slot, "get_touch");
+    }
+
+    //% blockId="Neo_Color_Setup" block="Setup Neo_Color %Neo_grps in %slot"
+    export function setupNeoColor(slot: Slot, neo_grps: Neo_grps): void {
+        execCmd(slot, "init1" + neo_grps.toString());
+    }
+
+
     //% blockId="oled_clear" block="OLED in %slot clear screen"
     export function oledClearScreen(slot: Slot): void {
         execCmd(slot, "ClearScreen");
-        basic.pause(10);
+        //basic.pause(10);
     }
     //% blockId="oled_show" block="OLED in %slot |show message %msg"
     export function oledShowMsg(slot: Slot, msg: string) {

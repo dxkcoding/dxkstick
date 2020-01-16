@@ -140,5 +140,5 @@ namespace dxktest {
         execCmd(slot, "DisplayGB2312,0,0," + msg.substr(0, 16));
         basic.pause(15);
     }
-    
+
 } 

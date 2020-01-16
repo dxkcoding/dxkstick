@@ -104,10 +104,16 @@ namespace dxktest {
     //% blockId="Handle_Button_State" block="Get Handle %handle_button State from %slot"
     export function getHandleButton(slot: Slot, handle_button: HandleButton): boolean {
         if (execCmdHandle(slot, handle_button) == 0) {
-            return true;
+            return false;
         }
         else {
-            return false;
+            return true;
+        }
+    }
+    //% blockId="Handle_Button_If" block="If Handle %handle_button State from %slot is On"
+    export function handleButtonIf(slot: Slot, handle_button: HandleButton, Func: () =>void): void {
+        if (execCmdHandle(slot, handle_button) == 1) {
+            Func;
         }
     }
     //% blockId="Handle_Axis" block="Get %handle_axis from %slot"
@@ -133,6 +139,10 @@ namespace dxktest {
     //% blockId="led_off" block="LED in %slot OFF"
     export function ledOFF(slot: Slot): void {
         execCmd(slot, "set_led_off");
+    }
+    //% blockId="set_time" block="Set Time in %slot as "
+    export function setTime(slot: Slot): void {
+        execCmd(slot, "set_time" + "4");
     }
     //% blockId="oled_clear" block="OLED in %slot clear screen"
     export function oledClearScreen(slot: Slot): void {

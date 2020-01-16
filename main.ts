@@ -111,7 +111,7 @@ namespace dxktest {
         }
     }
     //% blockId="Handle_Button_If" block="If Handle %handle_button State from %slot is On"
-    export function handleButtonIf(slot: Slot, handle_button: HandleButton, Func: () =>void): void {
+    export function handleButtonIf(slot: Slot, handle_button: HandleButton, Func: () => void): void {
         if (execCmdHandle(slot, handle_button) == 1) {
             Func();
         }

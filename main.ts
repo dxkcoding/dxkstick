@@ -146,7 +146,7 @@ namespace dxktest {
     }
     //% blockId="set_time" block="Set Time in %slot as "
     export function setTime(slot: Slot): void {
-        execCmd(slot, "set_time" + "4");
+        execCmd(slot, "set_time" + '4');
     }
     //% blockId="oled_clear" block="OLED in %slot clear screen"
     export function oledClearScreen(slot: Slot): void {

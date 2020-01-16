@@ -32,6 +32,15 @@ enum HandleAxis {
     HandleY = 8
 }
 
+enum Neo_grps {
+    //% block="Ring_24"
+    Ring24 = 1,
+    //% block="Array_99"
+    Array99 = 2,
+    //% block="Belt_30"
+    Belt30 = 3
+}
+
 function bufferFromString(s: string): Buffer {
     let buf = pins.createBuffer(s.length);
     for (let i = 0; i < s.length; i++) {
@@ -135,8 +144,41 @@ namespace dxktest {
         execCmd(slot, "set_led_off");
     }
     //% blockId="set_time" block="Set Time in %slot as "
-    export function setTime(slot: Slot): void {
-        execCmd(slot, "set_time" + '4');
+    export function setTime(slot: Slot, year: number, month: number, day: number, h: number, m: number, s: number): void {
+        execCmd(slot, "setT" + year + month + day + h + m + s);
+    }
+    //% blockId="get_time" block="Get Time in %slot as "
+    export function getTime(slot: Slot): string {
+        execCmd(slot, "getT" );
+        let buf = pins.i2cReadBuffer(slot, 6);
+        let datetime= '20';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,0).toString() + '-';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,1).toString() + '-';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,2).toString() + ' ';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,3).toString() + ':';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,4).toString() + ':';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,5).toString();
+        return datetime;
+    }
+    //% blockId="motor" block="Move Motor in %slot"
+    export function Motor(slot: Slot, distance: number): void {
+        if(distance > 0){
+            execCmd(slot, 'getf' + Math.abs(distance));
+        }
+        else{
+            execCmd(slot, 'getb' + Math.abs(distance));
+        } 
+        basic.pause(1000);
+    }
+    //% blockId="setup_neo" block="Setup Neo in %slot"
+    export function setupNeo(slot: Slot, neo_grps: Neo_grps): void {
+        execCmd(slot, "init1" + neo_grps);
+        basic.pause(10);
+    }
+    //% blockId="set_neo_color" block="Set Neo Color in %slot"
+    export function setNeoColor(slot: Slot, neo_grps: Neo_grps, pos: number, r: number, g: number, b: number): void {
+        execCmd(slot, "setP" + neo_grps + r + g + b);
+        basic.pause(10);
     }
     //% blockId="oled_clear" block="OLED in %slot clear screen"
     export function oledClearScreen(slot: Slot): void {

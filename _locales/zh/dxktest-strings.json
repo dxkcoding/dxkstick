@@ -22,6 +22,9 @@
     "dxktest.getTouchState|block": "获取 %slot 触摸状态",
     "dxktest.ledON|block": "%slot 红灯亮",
     "dxktest.ledOFF|block": "%slot 红灯灭",
+    "dxktest.setTime|block": "设置 %slot 年：20%year 月：%month 日：%day 时：%h 分：%m 秒：%s",
+    "dxktest.getTime|block": "获取 %slot 的日期和时间",
+    "dxktest.Motor|block": "移动 %slot 电机至 %distance （-1024~1024）",
     "dxktest.oledClearScreen|block": "清空 %slot OLED屏幕",
     "dxktest.oledShowMsg|block": "在 %slot| OLED屏幕显示 %msg （仅英文）"
 }

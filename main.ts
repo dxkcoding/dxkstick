@@ -103,21 +103,11 @@ namespace dxktest {
     }
     //% blockId="Handle_Button_State" block="Get Handle %handle_button State from %slot"
     export function getHandleButton(slot: Slot, handle_button: HandleButton): boolean {
-        if (execCmdHandle(slot, handle_button) == 0) {
-            return false;
-        }
-        else {
+        if (execCmdHandle(slot, handle_button) > 0) {
             return true;
         }
-    }
-    //% blockId="Handle_Button_If" block="If Handle %handle_button State from %slot is On"
-    export function handleButtonIf(slot: Slot, handle_button: HandleButton, Func: () => void): void {
-        if (execCmdHandle(slot, handle_button) == 0) {
-            ;           
-        }
-        else
-        {
-            Func();
+        else {
+            return false;
         }
     }
     //% blockId="Handle_Axis" block="Get %handle_axis from %slot"

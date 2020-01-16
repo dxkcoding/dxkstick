@@ -17,7 +17,7 @@
     "dxktest.getMicrophone|block": "获取 %slot 音量",
     "dxktest.getHandleButton|block": "获取 %slot 手柄的 %handle_button 按压状态",
     "dxktest.getHandleAxis|block": "获取 %slot 手柄的 %handle_axis",
-    "dxktest.handleButtonIf|block": "如果 %slot 手柄的 %handle_button 按下",
+    "dxktest.handleButtonIf|block": "当 %slot 手柄的 %handle_button 按下",
     "dxktest.getDistance|block": "获取 %slot 距离（cm）",
     "dxktest.getPressure|block": "获取 %slot 大气压",
     "dxktest.getTouchState|block": "获取 %slot 触摸状态",

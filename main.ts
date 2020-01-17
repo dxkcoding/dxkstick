@@ -157,13 +157,13 @@ namespace dxktest {
     export function getTouchState(slot: Slot): boolean {
         return execCmdReturnBool(slot, "get_touch");
     }
-    //% blockId="led_on" block="LED in %slot ON"
-    export function ledON(slot: Slot): void {
-        execCmd(slot, "set_led_on");
+    //% blockId="Led_ON" block="Set LED ON in %slot"
+    export function LedON(slot: Slot): void {
+         execCmd(slot, "set_led_on");
     }
-    //% blockId="led_off" block="LED in %slot OFF"
-    export function ledOFF(slot: Slot): void {
-        execCmd(slot, "set_led_off");
+    //% blockId="Led_OFF" block="Set LED OFF in %slot"
+    export function LedOFF(slot: Slot): void {
+         execCmd(slot, "set_led_off");
     }
     //% blockId="set_time" block="Set Time in %slot as "
     export function setTime(slot: Slot, year: number, month: number, day: number, h: number, m: number, s: number): void {

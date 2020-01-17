@@ -5,6 +5,7 @@ enum Slot {
     SlotB = 0x17
 }
 
+
 enum TempHumi {
     //% block="Temperature"
     Temperature = 0x1,

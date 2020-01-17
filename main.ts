@@ -74,11 +74,12 @@ function execCmdReturn16(slot: Slot, cmd: string): number {
 }
 function execCmdReturnBool(slot: Slot, cmd: string): boolean {
     pins.i2cWriteBuffer(slot, bufferFromString(cmd), false);
-    let val = true;
-    if (pins.i2cReadNumber(slot, NumberFormat.Int8BE) == 0) {
-        val = false;
+    if (pins.i2cReadNumber(slot, NumberFormat.Int8BE) > 0) {
+        return true;
     }
-    return val;
+    else{
+        return false;
+    }
 }
 function execCmdHandle(slot: Slot, ChosenByte: number): number {
     pins.i2cWriteBuffer(slot, bufferFromString("get_key_val"), false);

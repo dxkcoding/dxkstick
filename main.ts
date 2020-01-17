@@ -199,7 +199,7 @@ namespace dxktest {
     }
     //% blockId="set_neo_pixel_color" block="Set Neo NO.%pos Pixel's Color to (r:%r ,g:%g ,b:%b ) in %slot"
     export function setNeoPixelColor(slot: Slot, pos: number, r: number, g: number, b: number): void {
-        execCmd(slot, "setP" + String.fromCharCode(0) + String.fromCharCode(r) + String.fromCharCode(g) + String.fromCharCode(b));
+        execCmd(slot, "setP" + String.fromCharCode(0) + String.fromCharCode(pos) + String.fromCharCode(r) + String.fromCharCode(g) + String.fromCharCode(b));
         basic.pause(10);
     }
     //% blockId="set_neo_array99_color" block="Set Neo Array99 Pixel's Color at (X:%x ,Y:%y ) to (r:%r ,g:%g ,b:%b ) in %slot"

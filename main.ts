@@ -41,6 +41,13 @@ enum Neo_grps {
     Belt30 = 3
 }
 
+enum Animation_Type {
+    //% block="Rainbaw"
+    Rainbaw = 0,
+    //% block="Shinelon"
+    Shinelon = 1
+}
+
 function bufferFromString(s: string): Buffer {
     let buf = pins.createBuffer(s.length);
     for (let i = 0; i < s.length; i++) {
@@ -149,35 +156,50 @@ namespace dxktest {
     }
     //% blockId="get_time" block="Get Time in %slot as "
     export function getTime(slot: Slot): string {
-        execCmd(slot, "getT" );
+        execCmd(slot, "getT");
         let buf = pins.i2cReadBuffer(slot, 6);
-        let datetime= '20';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,0).toString() + '-';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,1).toString() + '-';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,2).toString() + ' ';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,3).toString() + ':';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,4).toString() + ':';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE,5).toString();
+        let datetime = '20';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 0).toString() + '-';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 1).toString() + '-';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 2).toString() + ' ';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 3).toString() + ':';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 4).toString() + ':';
+        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 5).toString();
         return datetime;
     }
     //% blockId="motor" block="Move Motor in %slot"
     export function Motor(slot: Slot, distance: number): void {
-        if(distance > 0){
-            execCmd(slot, 'getf' + Math.abs(distance));
+        if (distance > 0) {
+            execCmd(slot, 'getf' + String.fromCharCode(Math.abs(distance)));
         }
-        else{
-            execCmd(slot, 'getb' + Math.abs(distance));
-        } 
+        else {
+            execCmd(slot, 'getb' + String.fromCharCode(Math.abs(distance)));
+        }
         basic.pause(1000);
     }
     //% blockId="setup_neo" block="Setup Neo in %slot"
     export function setupNeo(slot: Slot, neo_grps: Neo_grps): void {
-        execCmd(slot, "init1" + neo_grps);
+        execCmd(slot, "init1" + String.fromCharCode(neo_grps));
         basic.pause(10);
     }
-    //% blockId="set_neo_color" block="Set Neo Color in %slot"
-    export function setNeoColor(slot: Slot, neo_grps: Neo_grps, pos: number, r: number, g: number, b: number): void {
-        execCmd(slot, "setP" + neo_grps + r + g + b);
+    //% blockId="set_neo_pixel_color" block="Set Neo NO.%pos Pixel's Color to (r:%r ,g:%g ,b:%b ) in %slot"
+    export function setNeoPixelColor(slot: Slot, pos: number, r: number, g: number, b: number): void {
+        execCmd(slot, "setP" + String.fromCharCode(0) + String.fromCharCode(r) + String.fromCharCode(g) + String.fromCharCode(b));
+        basic.pause(10);
+    }
+    //% blockId="set_neo_array99_color" block="Set Neo Array99 Pixel's Color at (X:%x ,Y:%y ) to (r:%r ,g:%g ,b:%b ) in %slot"
+    export function setNeoArray99Color(slot: Slot, x: number, y: number, r: number, g: number, b: number): void {
+        execCmd(slot, "setX" + String.fromCharCode(0) + String.fromCharCode(x) + String.fromCharCode(y) + String.fromCharCode(r) + String.fromCharCode(g) + String.fromCharCode(b));
+        basic.pause(10);
+    }
+    //% blockId="fill_neo_color" block="Fill Neo with Color of (r:%r ,g:%g ,b:%b ) in %slot"
+    export function fillNeoColor(slot: Slot, r: number, g: number, b: number): void {
+        execCmd(slot, "fill" + String.fromCharCode(0) + String.fromCharCode(r) + String.fromCharCode(g) + String.fromCharCode(b));
+        basic.pause(10);
+    }
+    //% blockId="set_neo_rainbpow" block="Set Neo Rainbow %t at Position %x with Lenth %n in %slot"
+    export function setNeoRainbow(slot: Slot, t: Animation_Type, x: number, n: number): void {
+        execCmd(slot, "rnbl" + String.fromCharCode(0) + String.fromCharCode(t) + String.fromCharCode(x) + String.fromCharCode(n));
         basic.pause(10);
     }
     //% blockId="oled_clear" block="OLED in %slot clear screen"
@@ -187,7 +209,11 @@ namespace dxktest {
     }
     //% blockId="oled_show" block="OLED in %slot |show message %msg"
     export function oledShowMsg(slot: Slot, msg: string) {
-        execCmd(slot, "DisplayGB2312,0,0," + msg.substr(0, 16));
+        for (let ii = 0; ii < 8; ii++) {
+            if (msg.length > 16 * ii) {
+                execCmd(slot, "DisplayGB2312" + String.fromCharCode(8 * ii) + "," + String.fromCharCode(0) + "," + msg.substr(16 * ii, 16 * ii + 15));
+            }
+        }
         basic.pause(15);
     }
 } 

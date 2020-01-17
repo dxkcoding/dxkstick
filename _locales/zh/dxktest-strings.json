@@ -10,6 +10,11 @@
     "HandleButton.RightBottun|block": "RIGHT 键",
     "HandleAxis.HandleX|block": "摇杆X轴",
     "HandleAxis.HandleY|block": "摇杆Y轴",
+    "Neo_grps.Ring24|block": "24灯珠环",
+    "Neo_grps.Array99|block": "9×9灯珠方阵",
+    "Neo_grps.Belt30|block": "30灯珠灯带",
+    "Animation_Type.Rainbaw|block": "彩虹",
+    "Animation_Type.Shinelon|block": "炫龙",
     "dxktest|block": "DXK模块",
     "dxktest.getTempHumi|block": "获取 %slot %temp_humi",
     "dxktest.getPoten|block": "获取 %slot 电位",
@@ -25,6 +30,11 @@
     "dxktest.setTime|block": "设置 %slot 年：20%year 月：%month 日：%day 时：%h 分：%m 秒：%s",
     "dxktest.getTime|block": "获取 %slot 的日期和时间",
     "dxktest.Motor|block": "移动 %slot 电机至 %distance （-1024~1024）",
+    "dxktest.setupNeo|block": "初始化 %slot %neo_grps （操作灯板模块前必须执行）",
+    "dxktest.setNeoPixelColor|block": "设置 %slot 灯板模块第%pos 位的颜色为红:%r绿:%g蓝:%b",
+    "dxktest.setNeoArray99Color|block": "设置 %slot 9×9灯带方阵 X:%x Y:%y 处的颜色为 红：%r绿：%g蓝:%b",
+    "dxktest.fillNeoColor|block": "将 %slot 灯板模块所有灯的颜色填充为 红：%r绿：%g蓝:%b",
+    "dxktest.setNeoRainbow|block": "在 %slot 灯板模块播放彩条动画%t 起始像素:%x, 长度:%n",
     "dxktest.oledClearScreen|block": "清空 %slot OLED屏幕",
     "dxktest.oledShowMsg|block": "在 %slot| OLED屏幕显示 %msg （仅英文）"
 }

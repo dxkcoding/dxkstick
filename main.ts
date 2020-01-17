@@ -12,6 +12,15 @@ enum TempHumi {
     Humidity = 0x2
 }
 
+enum BMPDataType {
+    //% block="BMP_Pressure"
+    BMPPressure = 0x1,
+    //% block="BMP_Temperature"
+    BMPTemperature = 0x2,
+    //% block="BMP_Altitude"
+    BMPAltitude = 0x3
+}
+
 enum HandleButton {
     //% block="Handle_Hand"
     HandlPress = 1,
@@ -77,7 +86,7 @@ function execCmdReturnBool(slot: Slot, cmd: string): boolean {
     if (pins.i2cReadNumber(slot, NumberFormat.Int8BE) > 0) {
         return true;
     }
-    else{
+    else {
         return false;
     }
 }
@@ -135,9 +144,14 @@ namespace dxktest {
     export function getDistance(slot: Slot): number {
         return execCmdReturn16(slot, "get_distance_val");
     }
-    //% blockId="Pressure_value" block="Get Pressure Value from %slot"
-    export function getPressure(slot: Slot): number {
-        return execCmdReturn16(slot, "get_pressure");
+    //% blockId="BMP_280" block="Get %bmpdatatype from %slot"
+    export function getBMP280(slot: Slot, bmpdatatype: BMPDataType): number {
+        switch (bmpdatatype) {
+            case 0x1: return execCmdReturn16(slot, "getP");
+            case 0x2: return execCmdReturn16(slot, "getT");
+            case 0x3: return execCmdReturn16(slot, "getA");
+            default: return 1;
+        }
     }
     //% blockId="Touch_State" block="Get Touch State from %slot"
     export function getTouchState(slot: Slot): boolean {

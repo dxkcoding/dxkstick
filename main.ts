@@ -224,11 +224,11 @@ namespace dxktest {
     }
     //% blockId="oled_show" block="OLED in %slot |show message %msg"
     export function oledShowMsg(slot: Slot, msg: string) {
-        for (let ii = 0; ii < 8; ii++) {
+        for (let ii = 0; ii < 4; ii++) {
             if (msg.length > 16 * ii) {
-                execCmd(slot, "DisplayGB2312" + String.fromCharCode(8 * ii) + "," + String.fromCharCode(0) + "," + msg.substr(16 * ii, 16 * ii + 15));
+                execCmd(slot, "DisplayGB2312," + ii*2 + ",0," + msg.substr(16 * ii, 16 * ii + 15));
             }
         }
-        basic.pause(15);
+        //basic.pause(15);
     }
 } 

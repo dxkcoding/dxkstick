@@ -140,12 +140,12 @@ namespace dxktest {
     export function getHandleAxis(slot: Slot, handle_axis: HandleAxis): number {
         return execCmdHandle(slot, handle_axis);
     }
-    //% blockId="Distance_value" block="Get Distance Value from %slot"
+    //% blockId="Distance_Value" block="Get Distance Value from %slot"
     export function getDistance(slot: Slot): number {
         return execCmdReturn16(slot, "get_distance_val");
     }
-    //% blockId="BMP_280" block="Get %bmpdatatype from %slot"
-    export function getBMP280(slot: Slot, bmpdatatype: BMPDataType): number {
+    //% blockId="BMP_Data" block="Get %bmpdatatype from %slot"
+    export function getBMPData(slot: Slot, bmpdatatype: BMPDataType): number {
         switch (bmpdatatype) {
             case 0x1: return execCmdReturn16(slot, "getP");
             case 0x2: return execCmdReturn16(slot, "getT");
@@ -167,30 +167,36 @@ namespace dxktest {
     }
     //% blockId="set_time" block="Set Time in %slot as "
     export function setTime(slot: Slot, year: number, month: number, day: number, h: number, m: number, s: number): void {
-        execCmd(slot, "setT" + year + month + day + h + m + s);
+        execCmd(slot, "setT" + String.fromCharCode(year) + String.fromCharCode(month) + String.fromCharCode(day) + String.fromCharCode(h) + String.fromCharCode(m) + String.fromCharCode(s));
     }
     //% blockId="get_time" block="Get Time in %slot as "
     export function getTime(slot: Slot): string {
-        execCmd(slot, "getT");
+        pins.i2cWriteBuffer(slot, bufferFromString("getT"), false);
         let buf = pins.i2cReadBuffer(slot, 6);
         let datetime = '20';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 0).toString() + '-';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 1).toString() + '-';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 2).toString() + ' ';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 3).toString() + ':';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 4).toString() + ':';
-        datetime = datetime + buf.getNumber(NumberFormat.Int8BE, 5).toString();
+        let year = buf.getNumber(NumberFormat.Int8BE, 0);
+        if (year>=10){
+            datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 0)-1) + '-';
+        }
+        else{
+            datetime = datetime + '0' + (buf.getNumber(NumberFormat.Int8BE, 0)-1) + '-';
+        }
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 1)-1) + '-';
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 2)-1) + ' ';
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 3)-1) + ':';
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 4)-1) + ':';
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 5)-1);
         return datetime;
     }
-    //% blockId="motor" block="Move Motor in %slot"
-    export function Motor(slot: Slot, distance: number): void {
-        if (distance > 0) {
-            execCmd(slot, 'getf' + String.fromCharCode(Math.abs(distance)));
+    //% blockId="motor" block="Move Motor in %slot at Speed %speed"
+    export function Motor(slot: Slot, speed: number): void {
+        if (speed > 0) {
+            execCmd(slot, 'getf' + String.fromCharCode(Math.abs(speed)));
         }
         else {
-            execCmd(slot, 'getb' + String.fromCharCode(Math.abs(distance)));
+            execCmd(slot, 'getb' + String.fromCharCode(Math.abs(speed)));
         }
-        basic.pause(1000);
+        //basic.pause(1000);
     }
     //% blockId="setup_neo" block="Setup Neo in %slot"
     export function setupNeo(slot: Slot, neo_grps: Neo_grps): void {

@@ -19,5 +19,5 @@ Read more at https://makecode.microbit.org/extensions
 * for PXT/microbit
 (The metadata above is needed for package search.)
 ```package
-pxt-dxktest=github:pilidili/microbit_extension
+pxt-dxktest=github:github.com/dxkcoding/dxkstick
 ```

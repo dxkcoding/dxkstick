@@ -33,6 +33,7 @@
     "dxktest.setTime|block": "【时钟模块】设置 %slot 年：20%year 月：%month 日：%day 时：%h 分：%m 秒：%s",
     "dxktest.getTime|block": "【时钟模块】获取日期时间 %slot",
     "dxktest.Motor|block": "【电机模块】 %slot 转速 %speed （-1023~1023）",
+    "dxktest.SetSteeringEngine|block": "【舵机模块】 %slot 旋转至 %angle 度（0~180）",
     "dxktest.setupNeo|block": "【灯板模块-初始化】 %slot %neo_grps （操作前必须执行）",
     "dxktest.setNeoPixelColor|block": "【灯板模块-单点颜色】 %slot 像素位%pos 红:%r绿:%g蓝:%b",
     "dxktest.setNeoArray99Color|block": "【6×6灯珠方阵-单点颜色】%slot 像素位X:%x 像素位Y:%y 红：%r绿：%g蓝:%b",

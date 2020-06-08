@@ -159,11 +159,11 @@ namespace dxktest {
     }
     //% blockId="Led_ON" block="Set LED ON in %slot"
     export function LedON(slot: Slot): void {
-         execCmd(slot, "set_led_on");
+        execCmd(slot, "set_led_on");
     }
     //% blockId="Led_OFF" block="Set LED OFF in %slot"
     export function LedOFF(slot: Slot): void {
-         execCmd(slot, "set_led_off");
+        execCmd(slot, "set_led_off");
     }
     //% blockId="set_time" block="Set Time in %slot as "
     export function setTime(slot: Slot, year: number, month: number, day: number, h: number, m: number, s: number): void {
@@ -175,17 +175,17 @@ namespace dxktest {
         let buf = pins.i2cReadBuffer(slot, 6);
         let datetime = '20';
         let year = buf.getNumber(NumberFormat.Int8BE, 0);
-        if (year>=10){
-            datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 0)-1) + '-';
+        if (year >= 10) {
+            datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 0) - 1) + '-';
         }
-        else{
-            datetime = datetime + '0' + (buf.getNumber(NumberFormat.Int8BE, 0)-1) + '-';
+        else {
+            datetime = datetime + '0' + (buf.getNumber(NumberFormat.Int8BE, 0) - 1) + '-';
         }
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 1)-1) + '-';
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 2)-1) + ' ';
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 3)-1) + ':';
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 4)-1) + ':';
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 5)-1);
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 1) - 1) + '-';
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 2) - 1) + ' ';
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 3) - 1) + ':';
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 4) - 1) + ':';
+        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 5) - 1);
         return datetime;
     }
     //% blockId="motor" block="Move Motor in %slot at Speed %speed"
@@ -237,7 +237,7 @@ namespace dxktest {
     export function oledShowMsg(slot: Slot, msg: string) {
         for (let ii = 0; ii < 4; ii++) {
             if (msg.length > 16 * ii) {
-                execCmd(slot, "DisplayGB2312," + ii*2 + ",0," + msg.substr(16 * ii, 16 * ii + 15));
+                execCmd(slot, "DisplayGB2312," + ii * 2 + ",0," + msg.substr(16 * ii, 16 * ii + 15));
             }
         }
         //basic.pause(15);

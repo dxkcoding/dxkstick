@@ -198,6 +198,11 @@ namespace dxktest {
         }
         //basic.pause(1000);
     }
+    //% blockId="steering_engine" block="Move steering_engine in %slot to Angle %speed"
+    export function SetSteeringEngine(slot: Slot, angle: number): void {
+        execCmd(slot, 'conA' + String.fromCharCode(Math.abs(angle)));
+        //basic.pause(1000);
+    }
     //% blockId="setup_neo" block="Setup Neo in %slot"
     export function setupNeo(slot: Slot, neo_grps: Neo_grps): void {
         execCmd(slot, "init1" + String.fromCharCode(neo_grps));

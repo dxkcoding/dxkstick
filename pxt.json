@@ -16,6 +16,8 @@
         "test.ts"
     ],
     "public": true,
-    "preferredEditor": "tsprj",
-    "installedVersion": "workspace:b3585ae5-dfe8-426a-be85-5ab83dfc8114"
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
 }

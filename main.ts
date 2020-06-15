@@ -21,6 +21,30 @@ enum BMPDataType {
     BMPAltitude = 0x3
 }
 
+enum DateTimeOption {
+    //% block="Date_And_Time"
+    DateAndTime = 0x1,
+    //% block="Only_Date"
+    OnlyDate = 0x2,
+    //% block="Only_Time"
+    OnlyTime = 0x3
+}
+
+enum DateTimeSingleOption {
+    //% block="Only_Year"
+    OnlyYear = 0x1,
+    //% block="Only_Month"
+    OnlyMonth = 0x2,
+    //% block="Only_Day"
+    OnlyDay = 0x3,
+    //% block="Only_Hour"
+    OnlyHour = 0x4,
+    //% block="Only_Minute"
+    OnlyMinute = 0x5,
+    //% block="Only_Second"
+    OnlySecond = 0x6
+}
+
 enum HandleButton {
     //% block="Handle_Hand"
     HandlPress = 1,
@@ -169,25 +193,44 @@ namespace dxktest {
     export function setTime(slot: Slot, year: number, month: number, day: number, h: number, m: number, s: number): void {
         execCmd(slot, "setT" + String.fromCharCode(year) + String.fromCharCode(month) + String.fromCharCode(day) + String.fromCharCode(h) + String.fromCharCode(m) + String.fromCharCode(s));
     }
-    //% blockId="get_time" block="Get Time in %slot as "
-    export function getTime(slot: Slot): string {
+    //% blockId="get_time" block="Get %datetimeoption in %slot as "
+    export function getTime(slot: Slot, datetimeoption: DateTimeOption): string {
         pins.i2cWriteBuffer(slot, bufferFromString("getT"), false);
         let buf = pins.i2cReadBuffer(slot, 6);
-        let datetime = '20';
-        let year = buf.getNumber(NumberFormat.Int8BE, 0);
-        if (year >= 10) {
-            datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 0) - 1) + '-';
+        let yearnumber = buf.getNumber(NumberFormat.Int8BE, 0);
+        let year = '';
+        if (yearnumber > 10) {
+            year = '20' +  + (yearnumber - 1).toString(); 
         }
         else {
-            datetime = datetime + '0' + (buf.getNumber(NumberFormat.Int8BE, 0) - 1) + '-';
+             year = '20' + '0' + (yearnumber - 1).toString();
         }
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 1) - 1) + '-';
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 2) - 1) + ' ';
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 3) - 1) + ':';
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 4) - 1) + ':';
-        datetime = datetime + (buf.getNumber(NumberFormat.Int8BE, 5) - 1);
-        return datetime;
+        let month=(buf.getNumber(NumberFormat.Int8BE, 1) - 1).toString();
+        let day = (buf.getNumber(NumberFormat.Int8BE, 2) - 1).toString();
+        let hour = (buf.getNumber(NumberFormat.Int8BE, 3) - 1).toString();
+        let minute = (buf.getNumber(NumberFormat.Int8BE, 4) - 1).toString();
+        let second = (buf.getNumber(NumberFormat.Int8BE, 5) - 1).toString();
+        switch (datetimeoption) {
+            case 0x1: return(year + '-' + month + '-' + day + '  ' + hour + ':' + minute + ':' + second);
+            case 0x2: return(year + '-' + month + '-' + day);
+            case 0x3: return(hour + ':' + minute + ':' + second);
+            default: return(year + '-' + month + '-' + day + '  ' + hour + ':' + minute + ':' + second);
+        }
     }
+    //% blockId="get_time_single" block="Get %datetimesingleoption in %slot as "
+    export function getTimeSingle(slot: Slot, datetimesingleoption: DateTimeSingleOption): number {
+        pins.i2cWriteBuffer(slot, bufferFromString("getT"), false);
+        let buf = pins.i2cReadBuffer(slot, 6);
+        switch (datetimesingleoption) {
+            case 0x1: return(2000 + buf.getNumber(NumberFormat.Int8BE, 0) - 1);
+            case 0x2: return(buf.getNumber(NumberFormat.Int8BE, 1) - 1);
+            case 0x3: return(buf.getNumber(NumberFormat.Int8BE, 2) - 1);
+            case 0x4: return(buf.getNumber(NumberFormat.Int8BE, 3) - 1);
+            case 0x5: return(buf.getNumber(NumberFormat.Int8BE, 4) - 1);
+            case 0x6: return(buf.getNumber(NumberFormat.Int8BE, 5) - 1);
+            default: return(buf.getNumber(NumberFormat.Int8BE, 0) - 1);
+        }
+    }    
     //% blockId="motor" block="Move Motor in %slot at Speed %speed"
     export function Motor(slot: Slot, speed: number): void {
         if (speed > 0) {

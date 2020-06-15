@@ -9,7 +9,7 @@ enum TempHumi {
     //% block="Temperature"
     Temperature = 0x1,
     //% block="Humidity"
-    Humidity = 0x2
+    Humidity = 0x2 
 }
 
 enum BMPDataType {

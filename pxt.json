@@ -1,6 +1,6 @@
 {
     "name": "dxktest",
-    "version": "0.0.38",
+    "version": "0.0.39",
     "description": "test project for dxkStick",
     "license": "MIT",
     "dependencies": {
@@ -19,6 +19,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "tsprj",
-    "installedVersion": "workspace:b3585ae5-dfe8-426a-be85-5ab83dfc8114"
+    "preferredEditor": "tsprj"
 }

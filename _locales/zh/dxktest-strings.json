@@ -40,7 +40,7 @@
     "dxktest.getTouchState|block": "【触摸感应模块】获取 %slot 触摸状态",
     "dxktest.LedON|block": "【LED】%slot LED点亮",
     "dxktest.LedOFF|block": "【LED】%slot LED熄灭",
-    "dxktest.LedColors|block": "【LED】设置 %slot LED 颜色 红：%r绿：%g蓝:%b",
+    "dxktest.LedColor|block": "【LED】设置 %slot LED 颜色 红：%r绿：%g蓝:%b",
     "dxktest.setTime|block": "【时钟模块】设置 %slot 年：20%year 月：%month 日：%day 时：%h 分：%m 秒：%s",
     "dxktest.getTime|block": "【时钟模块】获取 %slot %datetimeoption 字符串",
     "dxktest.getTimeSingle|block": "【时钟模块】获取 %slot %datetimesingleoption 数字",

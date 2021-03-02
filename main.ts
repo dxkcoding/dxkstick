@@ -317,7 +317,7 @@ namespace dxktest {
     export function getPoten(slot: Slot): number {
         return execCmdReturn16(slot, "get_poten_val");
     }
-    //% blockID="LedColors"  block="Set LED Color in %slot with R %r  G %g  B %b "
+    //% blockID="LedColor"  block="Set LED Color in %slot with R %r  G %g  B %b "
     //% r.min=0 r.max=255 g.min=0 g.max=255 b.min=0 b.max=255
     //% inlineInputMode=inline
     export function LedColor(slot: Slot, r: number, g: number, b: number):void{

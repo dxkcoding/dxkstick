@@ -237,7 +237,7 @@ namespace dxktest {
     //% blockId="set_neo_array_color" block="Set Neo Array Pixel's Color at (X:%x ,Y:%y ) to (r:%r ,g:%g ,b:%b ) in %slot"
     //% r.min=0 r.max=255 g.min=0 g.max=255 b.min=0 b.max=255 X.min=0 X.max=5 Y.min=0 Y.max=5 
     //% inlineInputMode=inline
-    export function setNeoArrayColor(x: number, y: number, r: number, g: number, b: number, slot: Slot): void {
+    export function setNeoArrayColor(slot: Slot, x: number, y: number, r: number, g: number, b: number): void {
         execCmd(slot, "setX" + String.fromCharCode(0) + String.fromCharCode(x) + String.fromCharCode(y) + String.fromCharCode(r) + String.fromCharCode(g) + String.fromCharCode(b));
         basic.pause(10);
     }

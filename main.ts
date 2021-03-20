@@ -244,7 +244,7 @@ namespace dxktest {
     //% blockId="set_neo_pixel_color" block="Set Neo NO.%pos Pixel's Color to |[r:%r ,g:%g ,b:%b] in %slot"
     //% r.min=0 r.max=255 g.min=0 g.max=255 b.min=0 b.max=255
     //% inlineInputMode=inline
-    export function setNeoPixelColor(pos: number, r: number, g: number, b: number, slot: Slot): void {
+    export function setNeoPixelColor(slot: Slot, pos: number, r: number, g: number, b: number): void {
         execCmd(slot, "setP" + String.fromCharCode(0) + String.fromCharCode(pos) + String.fromCharCode(r) + String.fromCharCode(g) + String.fromCharCode(b));
         basic.pause(10);
     }

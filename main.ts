@@ -213,7 +213,7 @@ namespace dxktest {
 
     //% blockId="set_neo_rainbow" block="Set Neo Rainbow %t at Position %x with Lenth %n in %slot"
     //% inlineInputMode=inline
-    export function setNeoRainbow(t: Animation_Type, x: number, n: number, slot: Slot ): void {
+    export function setNeoRainbow(slot: Slot,t: Animation_Type, x: number, n: number): void {
         switch (t){
             case 0x1 : 
                 execCmd(slot, "rnbl" + String.fromCharCode(0) + "N" + String.fromCharCode(x) + String.fromCharCode(n));
@@ -230,7 +230,7 @@ namespace dxktest {
     //% blockId="fill_neo_color" block="Fill Neo with Color of (r:%r ,g:%g ,b:%b ) in %slot"
     //% r.min=0 r.max=255 g.min=0 g.max=255 b.min=0 b.max=255  
     //% inlineInputMode=inline
-    export function fillNeoColor(r: number, g: number, b: number, slot: Slot): void {
+    export function fillNeoColor(slot: Slot, r: number, g: number, b: number): void {
         execCmd(slot, "fill" + String.fromCharCode(0) + String.fromCharCode(r) + String.fromCharCode(g) + String.fromCharCode(b));
         basic.pause(10);
     }

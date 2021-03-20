@@ -25,7 +25,7 @@
     "Neo_grps.Ring|block": "12位灯环",
     "Neo_grps.Array|block": "6×6灯珠矩阵",
     "Neo_grps.Belt|block": "30位灯带",
-    "Animation_Type.Rainbaw|block": "彩虹",
+    "Animation_Type.Rainbow|block": "彩虹",
     "Animation_Type.Chameleon|block": "变色龙",
     "Animation_Type.Confetti|block": "五彩缤纷",
     "dxktest|block": "DinoStick模块",

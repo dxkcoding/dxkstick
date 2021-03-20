@@ -1,3 +1,4 @@
+basic.clearScreen()
 enum Slot {
     //% block="Slot_A"
     SlotA = 0x16,

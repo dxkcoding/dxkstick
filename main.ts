@@ -298,7 +298,7 @@ namespace dxktest {
         //basic.pause(15);
     }
     //% blockId="Temp_Humi" block="Get %temp_humi from %slot"
-    export function getTempHumi(temp_humi: TempHumi, slot: Slot): number {
+    export function getTempHumi(slot: Slot, temp_humi: TempHumi): number {
         switch (temp_humi) {
             case 0x1: return execCmdReturn(slot, "get_temp");
             case 0x2: return execCmdReturn(slot, "get_humi");
